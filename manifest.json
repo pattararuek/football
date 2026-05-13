@@ -1,0 +1,22 @@
+{
+"name": "Thai League Who Are Ya?",
+"short_name": "TL WhoAreYa",
+"description": "เกมทายชื่อนักเตะไทยลีก 2024/25",
+"start_url": "index.html",
+"display": "standalone",
+"background_color": "#020617",
+"theme_color": "#eab308",
+"icons": [
+{
+"src": "https://static.wikia.nocookie.net/logopedia/images/9/95/BYD_Sealion_6_League_I_2025.png/revision/latest/scale-to-width-down/200?cb=20250810060051",
+"sizes": "192x192",
+"type": "image/png",
+"purpose": "any maskable"
+},
+{
+"src": "https://static.wikia.nocookie.net/logopedia/images/9/95/BYD_Sealion_6_League_I_2025.png/revision/latest/scale-to-width-down/200?cb=20250810060051",
+"sizes": "512x512",
+"type": "image/png"
+}
+]
+}
