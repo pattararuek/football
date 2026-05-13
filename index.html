@@ -31,15 +31,8 @@
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
         
-        .loading-shimmer {
-            background: linear-gradient(90deg, #1e293b 25%, #334155 50%, #1e293b 75%);
-            background-size: 200% 100%;
-            animation: shimmer 1.5s infinite;
-        }
-        @keyframes shimmer {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
-        }
+        .hint-text { filter: blur(4px); transition: filter 0.3s; }
+        .hint-text:hover { filter: blur(0); }
     </style>
 </head>
 <body class="min-h-screen flex flex-col items-center p-4">
@@ -54,20 +47,31 @@
         </h1>
     </header>
 
-    <main class="w-full max-w-2xl">
-        <div class="relative mb-10 group">
-            <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 via-yellow-500 to-red-600 rounded-2xl blur opacity-20 group-focus-within:opacity-40 transition duration-1000"></div>
-            <input type="text" id="playerInput" autocomplete="off" disabled placeholder="กรุณารอสักครู่ กำลังโหลดข้อมูลนักเตะ..." 
-                class="relative w-full p-6 rounded-2xl bg-slate-900/90 border border-slate-700 focus:border-yellow-500 outline-none transition-all text-xl text-white placeholder-slate-500 shadow-2xl backdrop-blur-md disabled:opacity-50 disabled:cursor-not-allowed">
-            
-            <div id="searchResults" class="absolute w-full mt-3 bg-slate-900 rounded-2xl shadow-2xl z-[100] max-h-[400px] overflow-y-auto hidden border border-slate-700 divide-y divide-slate-800">
+    <main class="w-full max-w-3xl">
+        <div class="flex flex-col gap-4 mb-10">
+            <div class="relative group">
+                <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 via-yellow-500 to-red-600 rounded-2xl blur opacity-20 group-focus-within:opacity-40 transition duration-1000"></div>
+                <input type="text" id="playerInput" autocomplete="off" disabled placeholder="กรุณารอสักครู่ กำลังโหลดข้อมูลนักเตะ..." 
+                    class="relative w-full p-6 rounded-2xl bg-slate-900/90 border border-slate-700 focus:border-yellow-500 outline-none transition-all text-xl text-white placeholder-slate-500 shadow-2xl backdrop-blur-md disabled:opacity-50 disabled:cursor-not-allowed">
+                
+                <div id="searchResults" class="absolute w-full mt-3 bg-slate-900 rounded-2xl shadow-2xl z-[100] max-h-[400px] overflow-y-auto hidden border border-slate-700 divide-y divide-slate-800">
+                </div>
+            </div>
+
+            <div class="flex justify-center gap-3">
+                <button id="hintBtn" onclick="showHint()" class="px-6 py-2 bg-slate-800 hover:bg-slate-700 border border-slate-600 rounded-full text-sm font-bold text-yellow-500 transition-all active:scale-95 flex items-center gap-2">
+                    <span>💡</span> ขอคำใบ้
+                </button>
+                <div id="hintDisplay" class="hidden px-6 py-2 bg-yellow-500/10 border border-yellow-500/30 rounded-full text-sm font-medium text-yellow-200 animate-pulse">
+                </div>
             </div>
         </div>
 
-        <div class="grid grid-cols-6 gap-2 mb-4 px-2 text-center text-[9px] sm:text-[11px] font-black text-slate-500 uppercase tracking-widest">
-            <div>รูปภาพ</div>
+        <div class="grid grid-cols-7 gap-1 sm:gap-2 mb-4 px-2 text-center text-[8px] sm:text-[10px] font-black text-slate-500 uppercase tracking-widest">
+            <div>รูป</div>
             <div>ชื่อ</div>
             <div>สโมสร</div>
+            <div>เบอร์</div>
             <div>ตำแหน่ง</div>
             <div>ชาติ</div>
             <div>อายุ</div>
@@ -86,7 +90,7 @@
             <div id="targetReveal" class="mb-8 p-6 bg-slate-800/40 rounded-3xl border border-slate-700/50 relative overflow-hidden group">
                 <img id="revealImage" src="" alt="Player" class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-yellow-500 object-cover shadow-2xl transition-transform group-hover:scale-110 duration-500">
                 <div id="revealName" class="text-3xl font-black text-white mb-1"></div>
-                <div id="revealDetails" class="text-slate-400 font-medium text-sm"></div>
+                <div id="revealDetails" class="text-slate-400 font-medium text-sm flex flex-col items-center gap-1"></div>
             </div>
 
             <button onclick="resetGame()" class="w-full py-5 bg-gradient-to-r from-yellow-400 to-yellow-600 text-slate-950 hover:from-yellow-300 hover:to-yellow-500 rounded-2xl font-black text-xl transition-all active:scale-95 shadow-[0_10px_40px_rgba(234,179,8,0.3)] uppercase">
@@ -101,14 +105,21 @@
         let targetPlayer;
         let guesses = [];
         let isGameOver = false;
+        let hintCount = 0;
 
         const input = document.getElementById('playerInput');
         const resultsBox = document.getElementById('searchResults');
         const container = document.getElementById('guessesContainer');
         const modal = document.getElementById('modal');
         const badge = document.getElementById('playerCountBadge');
+        const hintDisplay = document.getElementById('hintDisplay');
 
-        // ฟังก์ชันดึงข้อมูลจาก API พร้อม Exponential Backoff
+        // ฟังก์ชันช่วยสร้าง URL ธงชาติ (ใช้ตัวเล็กสำหรับ FlagCDN)
+        function getFlagUrl(code) {
+            if (!code) return '';
+            return `https://flagcdn.com/w40/${code.toLowerCase()}.png`;
+        }
+
         async function fetchWithRetry(url, retries = 5, delay = 1000) {
             for (let i = 0; i < retries; i++) {
                 try {
@@ -127,22 +138,21 @@
             try {
                 const rawData = await fetchWithRetry(API_URL);
                 
-                // แปลงข้อมูลให้เป็น Format ที่ต้องการ
                 allPlayers = rawData.map(p => ({
                     name: p.full_name || `${p.first_name} ${p.last_name}`,
                     team: p.club_name || "ไม่มีสโมสร",
                     pos: p.position_short_name || "??",
                     nat: p.nationality ? p.nationality.code : "TH",
+                    natName: p.nationality ? p.nationality.name : "Thailand",
                     age: p.age,
+                    num: p.tnm_shirt_number || "??",
                     img: p.tnm_photo || "https://placehold.co/150x150/1e293b/white?text=No+Photo"
                 }));
 
                 badge.innerText = `Database: ${allPlayers.length} Players`;
                 badge.classList.replace('bg-red-600', 'bg-green-600');
-                
                 input.disabled = false;
                 input.placeholder = "พิมพ์ชื่อนักเตะ หรือชื่อสโมสร...";
-                
                 initGame();
             } catch (error) {
                 console.error("Failed to load players:", error);
@@ -153,31 +163,44 @@
 
         function initGame() {
             if (allPlayers.length === 0) return;
-            
             targetPlayer = allPlayers[Math.floor(Math.random() * allPlayers.length)];
             guesses = [];
             isGameOver = false;
+            hintCount = 0;
             
             input.disabled = false;
             input.value = '';
             container.innerHTML = '';
             modal.classList.add('hidden');
             resultsBox.classList.add('hidden');
+            hintDisplay.classList.add('hidden');
             
             console.log("Dev Hint: " + targetPlayer.name);
             input.focus();
         }
 
+        function showHint() {
+            if (isGameOver || !targetPlayer) return;
+            hintCount++;
+            hintDisplay.classList.remove('hidden');
+            
+            if (hintCount === 1) {
+                hintDisplay.innerText = `ใบ้ 1: อยู่ทีม ${targetPlayer.team}`;
+            } else if (hintCount === 2) {
+                hintDisplay.innerText = `ใบ้ 2: ใส่เสื้อเบอร์ ${targetPlayer.num}`;
+            } else {
+                hintDisplay.innerText = `ใบ้ 3: เล่นตำแหน่ง ${targetPlayer.pos} และเป็นคนชาติ ${targetPlayer.natName}`;
+            }
+        }
+
         input.addEventListener('input', (e) => {
             if (isGameOver) return;
             const val = e.target.value.toLowerCase().trim();
-            
             if (val.length < 1) {
                 resultsBox.classList.add('hidden');
                 return;
             }
 
-            // แก้ไข: เพิ่มจำนวน slice ให้มากขึ้น (50 คน) เพื่อให้แสดงนักเตะในสโมสรเดียวกันได้ครบถ้วนขึ้น
             const filtered = allPlayers.filter(p => 
                 (p.name.toLowerCase().includes(val) || p.team.toLowerCase().includes(val)) &&
                 !guesses.some(g => g.name === p.name)
@@ -190,7 +213,10 @@
                             <img src="${p.img}" class="w-12 h-12 rounded-full object-cover border-2 border-slate-700 shadow-md" onerror="this.src='https://placehold.co/100x100/1e293b/white?text=?'">
                             <div class="flex flex-col text-left">
                                 <span class="font-bold text-white text-lg leading-tight">${p.name}</span>
-                                <span class="text-[10px] text-slate-400 uppercase font-medium tracking-wide">${p.team}</span>
+                                <div class="flex items-center gap-2 mt-1">
+                                     <img src="${getFlagUrl(p.nat)}" class="w-4 h-3 object-cover rounded-sm shadow-sm" alt="${p.nat}">
+                                     <span class="text-[10px] text-slate-400 uppercase font-medium tracking-wide">${p.team} (เบอร์ ${p.num})</span>
+                                </div>
                             </div>
                         </div>
                         <div class="px-3 py-1 bg-slate-800 rounded-lg text-[10px] font-black text-yellow-500 border border-slate-700">${p.pos}</div>
@@ -220,16 +246,22 @@
 
         function renderGuess(p) {
             const row = document.createElement('div');
-            row.className = 'grid grid-cols-6 gap-1 sm:gap-2 px-1 guess-animate';
+            row.className = 'grid grid-cols-7 gap-1 sm:gap-2 px-1 guess-animate';
             
             const checks = [
                 { type: 'img', val: p.img, correct: p.name === targetPlayer.name },
                 { type: 'text', val: p.name, correct: p.name === targetPlayer.name },
                 { type: 'text', val: p.team, correct: p.team === targetPlayer.team },
-                { type: 'text', val: p.pos, correct: p.pos === targetPlayer.pos },
-                { type: 'text', val: p.nat, correct: p.nat === targetPlayer.nat },
                 { 
-                    type: 'text', 
+                    type: 'num', 
+                    val: p.num, 
+                    correct: p.num === targetPlayer.num,
+                    sub: p.num < targetPlayer.num ? '↑' : p.num > targetPlayer.num ? '↓' : ''
+                },
+                { type: 'text', val: p.pos, correct: p.pos === targetPlayer.pos },
+                { type: 'nat', code: p.nat, val: p.nat, correct: p.nat === targetPlayer.nat },
+                { 
+                    type: 'num', 
                     val: p.age, 
                     correct: p.age === targetPlayer.age, 
                     sub: p.age < targetPlayer.age ? '↑' : p.age > targetPlayer.age ? '↓' : '' 
@@ -240,13 +272,22 @@
                 const bgClass = check.correct ? 'correct' : 'incorrect';
                 const delay = i * 120;
 
+                let content = '';
+                if (check.type === 'img') {
+                    content = `<img src="${check.val}" class="w-8 h-8 sm:w-12 sm:h-12 rounded-full object-cover border-2 border-white/20" onerror="this.src='https://placehold.co/100x100/1e293b/white?text=?'">`;
+                } else if (check.type === 'nat') {
+                    content = `
+                        <img src="${getFlagUrl(check.code)}" class="w-6 h-4 sm:w-8 sm:h-6 object-cover rounded shadow-md mb-1 border border-white/10" alt="${check.val}">
+                        <span class="px-1 uppercase">${check.val}</span>
+                    `;
+                } else {
+                    content = `<span class="px-1 break-words line-clamp-3 uppercase">${check.val}</span>`;
+                }
+
                 return `
-                    <div style="animation-delay: ${delay}ms" class="h-20 sm:h-28 flex flex-col items-center justify-center rounded-xl text-[8px] sm:text-[10px] font-bold text-center border-2 shadow-lg transition-all duration-700 ${bgClass}">
-                        ${check.type === 'img' ? 
-                            `<img src="${check.val}" class="w-10 h-10 sm:w-14 sm:h-14 rounded-full object-cover border-2 border-white/20" onerror="this.src='https://placehold.co/100x100/1e293b/white?text=?'">` : 
-                            `<span class="px-1 break-words line-clamp-3 uppercase">${check.val}</span>`
-                        }
-                        ${check.sub ? `<span class="text-lg leading-none mt-1 text-white/50 font-black">${check.sub}</span>` : ''}
+                    <div style="animation-delay: ${delay}ms" class="h-20 sm:h-24 flex flex-col items-center justify-center rounded-xl text-[8px] sm:text-[10px] font-bold text-center border-2 shadow-lg transition-all duration-700 ${bgClass}">
+                        ${content}
+                        ${check.sub ? `<span class="text-sm leading-none mt-1 text-white/50 font-black">${check.sub}</span>` : ''}
                     </div>
                 `;
             }).join('');
@@ -276,7 +317,14 @@
 
             revealImage.src = targetPlayer.img;
             revealName.innerText = targetPlayer.name;
-            revealDetails.innerText = `${targetPlayer.team} | ${targetPlayer.pos} | ${targetPlayer.nat} | อายุ ${targetPlayer.age}`;
+            revealDetails.innerHTML = `
+                <div class="text-white text-lg font-bold">${targetPlayer.team} | เบอร์ ${targetPlayer.num}</div>
+                <div class="flex items-center gap-2 mt-1">
+                    <img src="${getFlagUrl(targetPlayer.nat)}" class="w-6 h-4 object-cover rounded shadow">
+                    <span>${targetPlayer.natName} (${targetPlayer.nat})</span>
+                </div>
+                <div class="text-slate-400 font-medium">${targetPlayer.pos} | อายุ ${targetPlayer.age}</div>
+            `;
 
             modal.classList.remove('hidden');
             modal.classList.add('flex');
@@ -292,7 +340,6 @@
             }
         });
 
-        // เริ่มโหลดข้อมูลเมื่อเปิดหน้าเว็บ
         window.onload = loadData;
     </script>
 </body>
