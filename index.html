@@ -130,7 +130,7 @@
                 // แปลงข้อมูลให้เป็น Format ที่ต้องการ
                 allPlayers = rawData.map(p => ({
                     name: p.full_name || `${p.first_name} ${p.last_name}`,
-                    team: p.club_name,
+                    team: p.club_name || "ไม่มีสโมสร",
                     pos: p.position_short_name || "??",
                     nat: p.nationality ? p.nationality.code : "TH",
                     age: p.age,
@@ -177,10 +177,11 @@
                 return;
             }
 
+            // แก้ไข: เพิ่มจำนวน slice ให้มากขึ้น (50 คน) เพื่อให้แสดงนักเตะในสโมสรเดียวกันได้ครบถ้วนขึ้น
             const filtered = allPlayers.filter(p => 
                 (p.name.toLowerCase().includes(val) || p.team.toLowerCase().includes(val)) &&
                 !guesses.some(g => g.name === p.name)
-            ).slice(0, 10);
+            ).slice(0, 50);
 
             if (filtered.length > 0) {
                 resultsBox.innerHTML = filtered.map(p => `
