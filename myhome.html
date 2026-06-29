@@ -3,14 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>บันทึกรายรับ-รายจ่าย (Google Sheets)</title>
+    <title>Myhome - บันทึกรายรับ-รายจ่าย</title>
+    
+    <!-- PWA Settings -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Myhome">
+    <link rel="apple-touch-icon" href="image_b1c31c.jpg">
+    <link rel="manifest" href='data:application/json,{"name":"Myhome","short_name":"Myhome","start_url":".","display":"standalone","background_color":"#ffffff","icons":[{"src":"image_b1c31c.jpg","sizes":"512x512","type":"image/jpeg"}]}'>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <style>body { font-family: 'Prompt', sans-serif; }</style>
 </head>
 <body class="bg-gray-50 min-h-screen p-4">
     <div class="max-w-xl mx-auto bg-white rounded-3xl shadow-xl overflow-hidden">
         <div class="bg-blue-600 p-6 text-white text-center">
-            <h1 class="text-xl font-bold">บันทึกรายรับ-รายจ่าย</h1>
+            <h1 class="text-xl font-bold">บันทึกรายรับ-รายจ่าย (Myhome)</h1>
             <p id="status" class="text-sm opacity-80 mt-1">พร้อมใช้งาน</p>
         </div>
 
@@ -39,7 +47,6 @@
     <script>
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwi9vHQX1SRTeTVB3bGifs9QKqV7m6ZxT9h-cNdHBVQ-29ZuMv2n4B_5T99jKIs79abDQ/exec";
         
-        // ฟังก์ชันช่วยแสดง Loading
         const setLoading = (isLoading, btnId = 'submitBtn', text = 'บันทึกรายการ') => {
             const btn = document.getElementById(btnId);
             if (btn) {
@@ -111,7 +118,6 @@
 
         window.del = async (id) => {
             const btn = document.getElementById(`del-${id}`);
-            const originalText = btn.innerText;
             btn.innerText = "กำลังลบ...";
             btn.disabled = true;
 
