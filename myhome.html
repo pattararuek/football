@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>บันทึกรายรับ-รายจ่าย (Google Sheets)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>body { font-family: 'Prompt', sans-serif; }</style>
+</head>
+<body class="bg-gray-50 min-h-screen p-4">
+    <div class="max-w-xl mx-auto bg-white rounded-3xl shadow-xl overflow-hidden">
+        <div class="bg-blue-600 p-6 text-white text-center">
+            <h1 class="text-xl font-bold">บันทึกรายรับ-รายจ่าย</h1>
+            <p id="status" class="text-sm opacity-80 mt-1">พร้อมใช้งาน</p>
+        </div>
+
+        <div class="p-6 grid grid-cols-3 gap-4 border-b">
+            <div class="text-center"><p class="text-xs text-gray-400">รายรับ</p><p id="inc" class="font-bold text-green-600 text-lg">0</p></div>
+            <div class="text-center"><p class="text-xs text-gray-400">รายจ่าย</p><p id="exp" class="font-bold text-red-600 text-lg">0</p></div>
+            <div class="text-center"><p class="text-xs text-gray-400">คงเหลือ</p><p id="bal" class="font-bold text-blue-600 text-lg">0</p></div>
+        </div>
+
+        <form id="form" class="p-6 space-y-3">
+            <input type="hidden" id="editId">
+            <input type="text" id="desc" placeholder="รายการ" required class="w-full p-4 border rounded-xl focus:ring-2 focus:ring-blue-400 outline-none">
+            <div class="grid grid-cols-2 gap-3">
+                <input type="number" id="amount" placeholder="จำนวนเงิน" required class="p-4 border rounded-xl focus:ring-2 focus:ring-blue-400 outline-none">
+                <select id="type" class="p-4 border rounded-xl focus:ring-2 focus:ring-blue-400 outline-none bg-white">
+                    <option value="income">รายรับ</option>
+                    <option value="expense">รายจ่าย</option>
+                </select>
+            </div>
+            <button type="submit" id="submitBtn" class="w-full bg-blue-600 text-white p-4 rounded-xl font-bold hover:bg-blue-700 transition">บันทึกรายการ</button>
+        </form>
+
+        <div id="list" class="p-6 space-y-3 bg-gray-50"></div>
+    </div>
+
+    <script>
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwi9vHQX1SRTeTVB3bGifs9QKqV7m6ZxT9h-cNdHBVQ-29ZuMv2n4B_5T99jKIs79abDQ/exec";
+        
+        // ฟังก์ชันช่วยแสดง Loading
+        const setLoading = (isLoading, btnId = 'submitBtn', text = 'บันทึกรายการ') => {
+            const btn = document.getElementById(btnId);
+            if (btn) {
+                btn.disabled = isLoading;
+                btn.innerText = isLoading ? "กำลังประมวลผล..." : text;
+                btn.classList.toggle('opacity-50', isLoading);
+            }
+        };
+
+        async function loadData() {
+            document.getElementById('status').innerText = "กำลังโหลดข้อมูล...";
+            try {
+                const res = await fetch(SCRIPT_URL);
+                const data = await res.json();
+                render(data);
+            } catch (err) {
+                document.getElementById('status').innerText = "โหลดข้อมูลล้มเหลว";
+            }
+        }
+
+        function render(data) {
+            let inc=0, exp=0;
+            const list = document.getElementById('list');
+            list.innerHTML = "";
+            data.forEach(item => {
+                if(item.type === 'income') inc += parseFloat(item.amount);
+                else exp += parseFloat(item.amount);
+                
+                list.innerHTML += `
+                    <div class="flex justify-between items-center p-4 bg-white rounded-xl shadow-sm border border-gray-100">
+                        <div class="flex-1">
+                            <p class="font-medium">${item.desc}</p>
+                            <span class="text-sm ${item.type==='income'?'text-green-600':'text-red-600'} font-bold">${item.amount}</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="edit('${item.id}','${item.desc}',${item.amount},'${item.type}')" 
+                                    class="px-4 py-2 bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200 transition">แก้ไข</button>
+                            <button onclick="del('${item.id}')" 
+                                    id="del-${item.id}"
+                                    class="px-4 py-2 bg-red-100 text-red-700 rounded-lg hover:bg-red-200 transition">ลบ</button>
+                        </div>
+                    </div>
+                `;
+            });
+            document.getElementById('inc').innerText = inc.toLocaleString();
+            document.getElementById('exp').innerText = exp.toLocaleString();
+            document.getElementById('bal').innerText = (inc - exp).toLocaleString();
+            document.getElementById('status').innerText = "เชื่อมต่อสำเร็จ";
+        }
+
+        document.getElementById('form').onsubmit = async (e) => {
+            e.preventDefault();
+            setLoading(true);
+            const id = document.getElementById('editId').value || Date.now().toString();
+            const payload = { 
+                action: document.getElementById('editId').value ? 'update' : 'add', 
+                id, 
+                desc: document.getElementById('desc').value, 
+                amount: document.getElementById('amount').value, 
+                type: document.getElementById('type').value 
+            };
+            
+            await fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify(payload) });
+            document.getElementById('form').reset();
+            document.getElementById('editId').value = "";
+            setLoading(false, 'submitBtn', 'บันทึกรายการ');
+            loadData();
+        };
+
+        window.del = async (id) => {
+            const btn = document.getElementById(`del-${id}`);
+            const originalText = btn.innerText;
+            btn.innerText = "กำลังลบ...";
+            btn.disabled = true;
+
+            await fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify({action: 'delete', id}) }); 
+            loadData();
+        }
+
+        window.edit = (id, desc, amt, type) => {
+            document.getElementById('editId').value = id;
+            document.getElementById('desc').value = desc;
+            document.getElementById('amount').value = amt;
+            document.getElementById('type').value = type;
+            document.getElementById('submitBtn').innerText = "อัปเดตรายการ";
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        loadData();
+    </script>
+</body>
+</html>
