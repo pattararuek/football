@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="th" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shanghai Travel Guide & Detailed Itinerary (21-25 Nov 2026)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Kanit', 'sans-serif'],
+                    },
+                    colors: {
+                        shanghai: {
+                            red: '#e60023',
+                            gold: '#f59e0b',
+                            neon: '#00f2fe',
+                            night: '#0a0d18',
+                            card: '#121829',
+                            bund: '#1e293b'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Kanit', sans-serif;
+            background-color: #080b14;
+            color: #f1f5f9;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(224, 36, 36, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(14, 165, 233, 0.15) 0px, transparent 50%),
+                radial-gradient(at 50% 100%, rgba(245, 158, 11, 0.1) 0px, transparent 50%);
+            background-attachment: fixed;
+        }
+        .glass-panel {
+            background: rgba(18, 24, 41, 0.88);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-card {
+            background: rgba(10, 14, 26, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .shanghai-gradient-title {
+            background: linear-gradient(135deg, #ffffff 0%, #fef08a 35%, #f43f5e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .tab-btn {
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .tab-btn.active-day1 { background: linear-gradient(135deg, #e11d48, #be123c); color: white; border-color: #f43f5e; box-shadow: 0 4px 14px rgba(225, 29, 72, 0.4); }
+        .tab-btn.active-day2 { background: linear-gradient(135deg, #0284c7, #0369a1); color: white; border-color: #38bdf8; box-shadow: 0 4px 14px rgba(2, 132, 199, 0.4); }
+        .tab-btn.active-day3 { background: linear-gradient(135deg, #d97706, #b45309); color: white; border-color: #fbbf24; box-shadow: 0 4px 14px rgba(217, 119, 6, 0.4); }
+        .tab-btn.active-day4 { background: linear-gradient(135deg, #9333ea, #6b21a8); color: white; border-color: #c084fc; box-shadow: 0 4px 14px rgba(147, 51, 234, 0.4); }
+        .tab-btn.active-day5 { background: linear-gradient(135deg, #059669, #047857); color: white; border-color: #34d399; box-shadow: 0 4px 14px rgba(5, 150, 105, 0.4); }
+        .tab-btn.active-hotel { background: linear-gradient(135deg, #0284c7, #1d4ed8); color: white; border-color: #60a5fa; }
+        .tab-btn.active-apps { background: linear-gradient(135deg, #e11d48, #9333ea); color: white; border-color: #f472b6; }
+
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            top: 28px;
+            bottom: 28px;
+            left: 21px;
+            width: 2px;
+            background: linear-gradient(to bottom, rgba(244, 63, 94, 0.6), rgba(56, 189, 248, 0.6), rgba(251, 191, 36, 0.6), rgba(192, 132, 252, 0.6));
+        }
+
+        /* PRINT STYLES - FIXED FOR PDF GENERATION */
+        @media print {
+            .no-print, .no-print * {
+                display: none !important;
+            }
+            body {
+                background: #ffffff !important;
+                color: #0f172a !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+            main {
+                max-width: 100% !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+            .day-content {
+                display: block !important;
+                visibility: visible !important;
+                page-break-after: always !important;
+                break-after: page !important;
+                margin-bottom: 2rem !important;
+                opacity: 1 !important;
+            }
+            .glass-panel {
+                background: #ffffff !important;
+                color: #0f172a !important;
+                border: 1px solid #cbd5e1 !important;
+                box-shadow: none !important;
+                backdrop-filter: none !important;
+                border-radius: 12px !important;
+                padding: 1.2rem !important;
+            }
+            .glass-card {
+                background: #f8fafc !important;
+                color: #0f172a !important;
+                border: 1px solid #e2e8f0 !important;
+                box-shadow: none !important;
+            }
+            .text-white, .text-slate-100, .text-slate-200, .text-slate-300, .text-slate-400 {
+                color: #1e293b !important;
+            }
+            .shanghai-gradient-title {
+                background: none !important;
+                -webkit-text-fill-color: #0f172a !important;
+                color: #0f172a !important;
+            }
+            .timeline-line::before {
+                background: #cbd5e1 !important;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen pb-16">
+
+    <header class="relative overflow-hidden bg-gradient-to-r from-slate-950 via-rose-950/50 to-slate-950 text-white border-b border-rose-900/40 shadow-2xl">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-amber-500/10 via-rose-500/10 to-transparent"></div>
+        
+        <div class="max-w-5xl mx-auto px-4 py-6 sm:py-8 relative z-10">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+                <div>
+                    <div class="flex flex-wrap items-center gap-2 mb-2">
+                        <span class="bg-gradient-to-r from-rose-600 to-amber-600 text-white font-extrabold text-xs px-3 py-1 rounded-full uppercase tracking-wider flex items-center gap-1.5 shadow-md">
+                            <i class="fa-solid fa-plane-departure"></i> DMK ⇆ PVG (สนามบินดอนเมือง)
+                        </span>
+                        <span class="bg-amber-500/20 text-amber-300 border border-amber-500/40 text-xs font-semibold px-3 py-1 rounded-full flex items-center gap-1">
+                            <i class="fa-solid fa-calendar-days text-amber-400"></i> 21 - 25 พฤศจิกายน 2569 (5 วัน 4 คืน)
+                        </span>
+                    </div>
+                    <h1 class="text-3xl sm:text-5xl font-black tracking-tight shanghai-gradient-title drop-shadow-lg">
+                        🏮 SHANGHAI TRIP ITINERARY
+                    </h1>
+                    <p class="text-slate-300 mt-2 text-xs sm:text-sm flex flex-wrap items-center gap-2">
+                        <i class="fa-solid fa-hotel text-amber-400"></i>
+                        <span>ที่พักตลอดทริป: <strong class="text-amber-300 underline underline-offset-4">Holiday Inn Express Shanghai Baoyang</strong></span>
+                    </p>
+                </div>
+
+                <!-- Action Button -->
+                <div class="flex flex-wrap items-center gap-2 sm:gap-2.5 no-print self-stretch md:self-auto justify-end">
+                    <a href="https://maps.app.goo.gl/tScCHYb5cqsVfuKW9" target="_blank" class="bg-rose-700 hover:bg-rose-600 text-white px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-lg border border-rose-500/30">
+                        <i class="fa-solid fa-map-location-dot text-amber-300"></i> หมุดโรงแรม (Google)
+                    </a>
+                    <a href="https://uri.amap.com/search?keyword=上海宝杨智选假日酒店" target="_blank" class="bg-sky-700 hover:bg-sky-600 text-white px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-lg border border-sky-500/30">
+                        <i class="fa-solid fa-location-arrow text-sky-200"></i> หมุดโรงแรม (Amap)
+                    </a>
+                </div>
+            </div>
+
+            <!-- Highlights Overview Grid -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-6 pt-5 border-t border-rose-900/30">
+                <div class="bg-slate-900/80 p-3 rounded-2xl border border-rose-500/20">
+                    <span class="text-[11px] text-slate-400 block">✈️ เที่ยวบินขาไป</span>
+                    <span class="text-xs sm:text-sm font-bold text-rose-400 mt-0.5 block">ส. 21 พ.ย. (20:20 ➔ 01:30)</span>
+                </div>
+                <div class="bg-slate-900/80 p-3 rounded-2xl border border-sky-500/20">
+                    <span class="text-[11px] text-slate-400 block">🏙️ แลนด์มาร์คสำคัญ</span>
+                    <span class="text-xs sm:text-sm font-bold text-sky-400 mt-0.5 block">เดอะบันด์, ลู่เจียจุ่ย, วัดเจิ้งอัน</span>
+                </div>
+                <div class="bg-slate-900/80 p-3 rounded-2xl border border-amber-500/20">
+                    <span class="text-[11px] text-slate-400 block">🏮 วัฒนธรรม & คาเฟ่</span>
+                    <span class="text-xs sm:text-sm font-bold text-amber-400 mt-0.5 block">จูเจียเจี่ยว, สวนอี้หยวน & วัดหลงหัว</span>
+                </div>
+                <div class="bg-slate-900/80 p-3 rounded-2xl border border-emerald-500/20">
+                    <span class="text-[11px] text-slate-400 block">🛬 เที่ยวบินขากลับ</span>
+                    <span class="text-xs sm:text-sm font-bold text-emerald-400 mt-0.5 block">พ. 25 พ.ย. (02:40 ➔ 06:10)</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container with Space Between Days -->
+    <main class="max-w-5xl mx-auto px-4 mt-8 space-y-10">
+
+        <!-- ==================== DAY 1: SAT 21 NOV 2026 ==================== -->
+        <div id="day1" class="day-content">
+            <div class="glass-panel rounded-3xl p-6 sm:p-8 shadow-2xl border border-rose-500/20">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-rose-900/30 pb-5 mb-8 gap-3">
+                    <div>
+                        <span class="text-xs font-black text-rose-400 uppercase tracking-widest flex items-center gap-1.5">
+                            <i class="fa-solid fa-calendar-day"></i> DAY 1 • เสาร์ที่ 21 พฤศจิกายน 2569
+                        </span>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-1">ออกเดินทางจากกรุงเทพฯ (DMK) ➔ สู่เซี่ยงไฮ้ (PVG)</h2>
+                    </div>
+                    <span class="bg-rose-500/20 text-rose-300 border border-rose-500/40 px-3.5 py-1.5 rounded-full text-xs font-bold shadow-sm">
+                        ✈️ เที่ยวบินกลางคืน
+                    </span>
+                </div>
+
+                <div class="relative timeline-line space-y-8 pl-2">
+                    
+                    <!-- Event 1 -->
+                    <div class="relative z-10 flex gap-4 sm:gap-6">
+                        <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-rose-600 to-amber-600 text-white flex items-center justify-center text-lg font-bold flex-shrink-0 shadow-lg shadow-rose-600/30">
+                            1
+                        </div>
+                        <div class="glass-card rounded-2xl p-5 flex-grow border border-slate-800">
+                            <div class="flex justify-between items-start flex-wrap gap-2">
+                                <span class="text-xs font-black bg-rose-500/20 text-rose-300 border border-rose-500/30 px-3 py-1 rounded-full">17:30 - 20:20 น.</span>
+                                <span class="text-xs font-bold text-slate-400"><i class="fa-solid fa-plane text-rose-400"></i> สนามบินดอนเมือง (DMK)</span>
+                            </div>
+                            <h3 class="font-bold text-xl text-white mt-2">เช็คอิน & ผ่านพิธีการตรวจคนเข้าเมือง ณ ดอนเมือง</h3>
+                            <p class="text-slate-300 text-sm mt-2 leading-relaxed">
+                                พร้อมกันที่เคาน์เตอร์สายการบิน ณ สนามบินดอนเมือง อาคารผู้โดยสารระหว่างประเทศ (แนะนำถึงสนามบินอย่างน้อย 3 ชั่วโมงก่อนบิน)
+                            </p>
+                            <div class="mt-3 bg-slate-900/90 p-3.5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-1">
+                                <p class="text-amber-400 font-bold"><i class="fa-solid fa-clock mr-1"></i> ตารางเที่ยวบิน:</p>
+                                <p>• เครื่องออกเดินทางจาก DMK เวลา **20:20 น.** (ใช้เวลาบินประมาณ 4 ชั่วโมง 10 นาที)</p>
+                            </div>
+                            <!-- Map Buttons -->
+                            <div class="mt-4 flex flex-wrap gap-2 pt-2 border-t border-slate-800/80">
+                                <a href="https://www.google.com/maps/search/?api=1&query=Don+Mueang+International+Airport" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-800/90 hover:bg-rose-900/50 text-slate-200 border border-slate-700 hover:border-rose-500/50 transition">
+                                    <i class="fa-solid fa-map-pin text-rose-400"></i> Google Maps
+                                </a>
+                                <a href="https://uri.amap.com/search?keyword=Don+Mueang+International+Airport" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-800/90 hover:bg-sky-900/50 text-slate-200 border border-slate-700 hover:border-sky-500/50 transition">
+                                    <i class="fa-solid fa-location-arrow text-sky-400"></i> Amap (高德)
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Event 2 -->
+                    <div class="relative z-10 flex gap-4 sm:gap-6">
+                        <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-rose-600 to-amber-600 text-white flex items-center justify-center text-lg font-bold flex-shrink-0 shadow-lg shadow-rose-600/30">
+                            2
+                        </div>
+                        <div class="glass-card rounded-2xl p-5 flex-grow border border-slate-800">
+                            <div class="flex justify-between items-start flex-wrap gap-2">
+                                <span class="text-xs font-black bg-amber-500/20 text-amber-300 border border-amber-500/30 px-3 py-1 rounded-full">01:30 น. (เช้ามืด 22 พ.ย.)</span>
+                                <span class="text-xs font-bold text-slate-400"><i class="fa-solid fa-location-dot text-amber-400"></i> สนามบินผู่ตง (PVG) ➔ โรงแรม</span>
+                            </div>
+                            <h3 class="font-bold text-xl text-white mt-2">เดินทางถึงผู่ตง (PVG) & เรียกรถเข้าที่พัก Holiday Inn Express Baoyang</h3>
+                            <p class="text-slate-300 text-sm mt-2 leading-relaxed">
+                                เครื่องลงจอดเวลา 01:30 น. รับกระเป๋าสัมภาระ ผ่าน ตม. จีน
+                            </p>
+                            <div class="mt-3 bg-slate-900/90 p-3.5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-1.5">
+                                <p class="text-rose-400 font-bold"><i class="fa-solid fa-taxi mr-1"></i> การเดินทางยามดึกสู่โรงแรม (ช่วงเวลา 02:30 น.):</p>
+                                <p>• **วิธีเดินทาง:** เปิดแอป **Alipay ➔ เลือกเมนู DiDi Ride** หรือขึ้น Official Taxi บริเวณจุดจอดแท็กซี่สนามบิน มุ่งหน้าไปยัง **Holiday Inn Express Shanghai Baoyang**</p>
+                                <p>• **ระยะทาง:** ประมาณ 55 กิโลเมตร (ใช้เวลาเดินทางประมาณ 45-55 นาที ค่ารถประมาณ 160-220 หยวน)</p>
+                            </div>
+                            <!-- Map Buttons -->
+                            <div class="mt-4 flex flex-wrap gap-2 pt-2 border-t border-slate-800/80">
+                                <a href="https://maps.app.goo.gl/tScCHYb5cqsVfuKW9" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-800/90 hover:bg-rose-900/50 text-slate-200 border border-slate-700 hover:border-rose-500/50 transition">
+                                    <i class="fa-solid fa-map-pin text-rose-400"></i> Google Maps (โรงแรม)
+                                </a>
+                                <a href="https://uri.amap.com/search?keyword=上海宝杨智选假日酒店" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-800/90 hover:bg-sky-900/50 text-slate-200 border border-slate-700 hover:border-sky-500/50 transition">
+                                    <i class="fa-solid fa-location-arrow text-sky-400"></i> Amap (上海宝杨智选假日酒店)
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== DAY 2: SUN 22 NOV 2026 ==================== -->
+        <div id="day2" class="day-content">
+            <div class="glass-panel rounded-3xl p-6 sm:p-8 shadow-2xl border border-sky-500/20">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-sky-900/30 pb-5 mb-8 gap-3">
+                    <div>
+                        <span class="text-xs font-black text-sky-400 uppercase tracking-widest flex items-center gap-1.5">
+                            <i class="fa-solid fa-calendar-day"></i> DAY 2 • อาทิตย์ที่ 22 พฤศจิกายน 2569
+                        </span>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-1">วัดเจิ้งอัน, สตาร์บัคส์ยักษ์, ถนนคนเดินหนานจิง & ชมไฟเดอะบันด์</h2>
+                    </div>
+                    <span class="bg-sky-500/20 text-sky-300 border border-sky-500/40 px-3.5 py-1.5 rounded-full text-xs font-bold shadow-sm">
+                        🏙️ วัดทองคำ, ช้อปปิ้ง & วิวแลนด์มาร์คยุโรป
+                    </span>
+                </div>
+
+                <div class="relative timeline-line space-y-8 pl-2">
+                    
+                    <!-- Spot 1 -->
+                    <div class="relative z-10 flex gap-4 sm:gap-6">
+                        <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-sky-500 to-blue-600 text-white flex items-center justify-center text-lg font-bold flex-shrink-0 shadow-lg shadow-sky-500/30">
+                            1
+                        </div>
+                        <div class="glass-card rounded-2xl p-5 flex-grow border border-slate-800 hover:border-sky-500/40 transition">
+                            <div class="flex justify-between items-start flex-wrap gap-2">
+                                <span class="text-xs font-black bg-sky-500/20 text-sky-300 border border-sky-500/30 px-3 py-1 rounded-full">08:30 - 11:30 น.</span>
+                                <span class="text-xs font-bold text-slate-400"><i class="fa-solid fa-gopuram text-sky-400"></i> Metro Line 3 ➔ Line 1 ➔ Line 2 สถานี Jing'an Temple Exit 1</span>
+                            </div>
+                            <h3 class="font-bold text-xl text-white mt-2">วัดเจิ้งอัน (Jing'an Temple / 静安寺) & Starbucks Reserve Roastery (ย่านเฟิงเฉิงหลี่)</h3>
+                            <p class="text-slate-300 text-sm mt-2 leading-relaxed">
+                                เริ่มต้นเช้าสดใสไหว้พระขอพร ณ วัดทองคำทรงทิเบตศักดิ์สิทธิ์ใจกลางย่านตึกสูง จากนั้นเดินต่อ 10 นาทีไปยังย่าน **Fengshengli (丰盛里)** อาคารสือคู่เหมินโบราณเพื่อจิบกาแฟสด ณ **Starbucks Reserve Roastery** สาขาใหญ่อันดับ 2 ของโลก
+                            </p>
+                            <div class="mt-3 bg-slate-900/90 p-3.5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-1">
+                                <p class="text-sky-400 font-bold"><i class="fa-solid fa-route mr-1"></i> วิธีเดินทางจากโรงแรม (ประมาณ 45 นาที):</p>
+                                <p>• **Line 3** สถานี Baoyang Road ➔ ลง Shanghai Railway Station ➔ เปลี่ยนเป็น **Line 1** ลง People's Square ➔ เปลี่ยนเป็น **Line 2** ลง **Jing'an Temple Exit 1**</p>
+                            </div>
+                            <!-- Map Buttons -->
+                            <div class="mt-4 flex flex-wrap gap-2 pt-2 border-t border-slate-800/80">
+                                <a href="https://www.google.com/maps/search/?api=1&query=Jing'an+Temple+Shanghai" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-800/90 hover:bg-sky-900/50 text-slate-200 border border-slate-700 hover:border-sky-500/50 transition">
+                                    <i class="fa-solid fa-map-pin text-rose-400"></i> Google Maps (วัดเจิ้งอัน)
+                                </a>
+                                <a href="https://uri.amap.com/search?keyword=静安寺" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-800/90 hover:bg-sky-900/50 text-slate-200 border border-slate-700 hover:border-sky-500/50 transition">
+                                    <i class="fa-solid fa-location-arrow text-sky-400"></i> Amap (静安寺)
+                                </a>
+                                <a href="https://uri.amap.com/search?keyword=星巴克臻选上海烘焙工坊" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-800/90 hover:bg-amber-900/50 text-slate-200 border border-slate-700 hover:border-amber-500/50 transition">
+                                    <i class="fa-solid fa-mug-hot text-amber-400"></i> Amap (Starbucks Reserve)
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Spot 2 -->
+                    <div class="relative z-10 flex gap-4 sm:gap-6">
+                        <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-sky-500 to-blue-600 text-white flex items-center justify-center text-lg font-bold flex-shrink-0 shadow-lg shadow-sky-500/30">
+                            2
+                        </div>
+                        <div class="glass-card rounded-2xl p-5 flex-grow border border-slate-800 hover:border-sky-500/40 transition">
+                            <div class="flex justify-between items-start flex-wrap gap-2">
+                                <span class="text-xs font-black bg-sky-500/20 text-sky-300 border border-sky-500/30 px-3 py-1 rounded-full">12:00 - 15:00 น.</span>
+                                <span class="text-xs font-bold text-slate-400"><i class="fa-solid fa-bag-shopping text-sky-400"></i> Metro Line 2 สถานี East Nanjing Road Exit 1/2</span>
+                            </div>
+                            <h3 class="font-bold text-xl text-white mt-2">ถนนคนเดินหนานจิง (Nanjing Road Walking Street / 南京东路)</h3>
+                            <p class="text-slate-300 text-sm mt-2 leading-relaxed">
+                                นั่ง Line 2 ต่อมาลง East Nanjing Road เพลิดเพลินกับถนนช้อปปิ้งอันดับ 1 แวะ **Pop Mart Global Flagship**, **M&M's World**, **LEGO Store** และชิมเสี่ยวหลงเปาไส้ปูสดๆ และขนมเปี๊ยะสดที่ร้าน **First Food Hall (第一食品商店)**
+                            </p>
+                            <!-- Map Buttons -->
+                            <div class="mt-4 flex flex-wrap gap-2 pt-2 border-t border-slate-800/80">
+                                <a href="https://www.google.com/maps/search/?api=1&query=Nanjing+Road+Pedestrian+Street+Shanghai" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-800/90 hover:bg-sky-900/50 text-slate-200 border border-slate-700 hover:border-sky-500/50 transition">
+                                    <i class="fa-solid fa-map-pin text-rose-400"></i> Google Maps (ถนนหนานจิง)
+                                </a>
+                                <a href="https://uri.amap.com/search?keyword=南京东路步行街" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-800/90 hover:bg-sky-900/50 text-slate-200 border border-slate-700 hover:border-sky-500/50 transition">
+                                    <i class="fa-solid fa-location-arrow text-sky-400"></i> Amap (南京东路步行街)
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Spot 3 -->
+                    <div class="relative z-10 flex gap-4 sm:gap-6">
+                        <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-sky-500 to-blue-600 text-white flex items-center justify-center text-lg font-bold flex-shrink-0 shadow-lg shadow-sky-500/30">
+                            3
+                        </div>
+                        <div class="glass-card rounded-2xl p-5 flex-grow border border-slate-800 hover:border-sky-500/40 transition">
+                            <div class="flex justify-between items-start flex-wrap gap-2">
+                                <span class="text-xs font-black bg-sky-500/20 text-sky-300 border border-sky-500/30 px-3 py-1 rounded-full">15:30 - 17:30 น.</span>
+                                <span class="text-xs font-bold text-slate-400"><i class="fa-solid fa-person-walking text-sky-400"></i> เดินต่อจากถนนหนานจิง 10 นาที</span>
+                            </div>
+                            <h3 class="font-bold text-xl text-white mt-2">ย่านล็อคไว่ทาน (Rockbund / 洛克·外滩源) & สะพานไว่ไบ่ตู้ (Waibaidu Bridge)</h3>
+                            <p class="text-slate-300 text-sm mt-2 leading-relaxed">
+                                เดินทอดนัยน์ตากับกลุ่มตึกอิฐแดงทรงยุโรปโบราณจุดเริ่มต้นของหาดไว่ทาน แวะถ่ายรูปสะพานเหล็กโบราณ Waibaidu Bridge และพิพิธภัณฑ์ไปรษณีย์เก่าแก่ทรงคลาสสิก
+                            </p>
+                            <!-- Map Buttons -->
+                            <div class="mt-4 flex flex-wrap gap-2 pt-2 border-t border-slate-800/80">
+                                <a href="https://www.google.com/maps/search/?api=1&query=Rockbund+Shanghai" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-800/90 hover:bg-sky-900/50 text-slate-200 border border-slate-700 hover:border-sky-500/50 transition">
+                                    <i class="fa-solid fa-map-pin text-rose-400"></i> Google Maps (Rockbund)
+                                </a>
+                                <a href="https://uri.amap.com/search?keyword=洛克外滩源" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-800/90 hover:bg-sky-900/50 text-slate-200 border border-slate-700 hover:border-sky-500/50 transition">
+                                    <i class="fa-solid fa-location-arrow text-sky-400"></i> Amap (洛克外滩源)
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Spot 4 -->
+                    <div class="relative z-10 flex gap-4 sm:gap-6">
+                        <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-sky-500 to-blue-600 text-white flex items-center justify-center text-lg font-bold flex-shrink-0 shadow-lg shadow-sky-500/30">
+                            4
+                        </div>
+                        <div class="glass-card rounded-2xl p-5 flex-grow border border-slate-800 hover:border-sky-500/40 transition">
+                            <div class="flex justify-between items-start flex-wrap gap-2">
+                                <span class="text-xs font-black bg-sky-500/20 text-sky-300 border border-sky-500/30 px-3 py-1 rounded-full">18:00 - 21:00 น. (เปิดไฟ ~ 19:00 น.)</span>
+                                <span class="text-xs font-bold text-slate-400"><i class="fa-solid fa-camera text-sky-400"></i> ทางเดินริมแม่น้ำหวงผู่</span>
+                            </div>
+                            <h3 class="font-bold text-xl text-white mt-2">หาดไว่ทาน / เดอะบันด์ (The Bund / 外滩) & โรงแรมสันติภาพ (Peace Hotel)</h3>
+                            <p class="text-slate-300 text-sm mt-2 leading-relaxed">
+                                ชมการเปิดไฟสีทองสว่างไสวของกลุ่มอาคารยุโรปคลาสสิก 52 หลัง มองข้ามแม่น้ำไปยังวิวหอไข่มุกและตึกระฟ้า ลิ้มลองซาลาเปาทอดร้านดัง **Yang's Dumpling** ก่อนเดินทางกลับโรงแรมพักผ่อน
+                            </p>
+                            <!-- Map Buttons -->
+                            <div class="mt-4 flex flex-wrap gap-2 pt-2 border-t border-slate-800/80">
+                                <a href="https://www.google.com/maps/search/?api=1&query=The+Bund+Shanghai" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-800/90 hover:bg-sky-900/50 text-slate-200 border border-slate-700 hover:border-sky-500/50 transition">
+                                    <i class="fa-solid fa-map-pin text-rose-400"></i> Google Maps (The Bund)
+                                </a>
+                                <a href="https://uri.amap.com/search?keyword=外滩" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-800/90 hover:bg-sky-900/50 text-slate-200 border border-slate-700 hover:border-sky-500/50 transition">
+                                    <i class="fa-solid fa-location-arrow text-sky-400"></i> Amap (外滩)
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== DAY 3: MON 23 NOV 2026 ==================== -->
+        <div id="day3" class="day-content">
+            <div class="glass-panel rounded-3xl p-6 sm:p-8 shadow-2xl border border-amber-500/20">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-amber-900/30 pb-5 mb-8 gap-3">
+                    <div>
+                        <span class="text-xs font-black text-amber-400 uppercase tracking-widest flex items-center gap-1.5">
+                            <i class="fa-solid fa-calendar-day"></i> DAY 3 • จันทร์ที่ 23 พฤศจิกายน 2569
+                        </span>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-1">เมืองโบราณจูเจียเจี่ยว, สวนอี้หยวน & ย่านซินเทียนตี้</h2>
+                    </div>
+                    <span class="bg-amber-500/20 text-amber-300 border border-amber-500/40 px-3.5 py-1.5 rounded-full text-xs font-bold shadow-sm">
+                        🏮 เวนิสแห่งตะวันออก, สวนเก๋งจีน & บาร์ย่านเก่า
+                    </span>
+                </div>
+
+                <div class="relative timeline-line space-y-8 pl-2">
+                    
+                    <!-- Spot 1 -->
+                    <div class="relative z-10 flex gap-4 sm:gap-6">
+                        <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-amber-500 to-rose-600 text-white flex items-center justify-center text-lg font-bold flex-shrink-0 shadow-lg shadow-amber-500/30">
+                            1
+                        </div>
+                        <div class="glass-card rounded-2xl p-5 flex-grow border border-slate-800 hover:border-amber-500/40 transition">
+                            <div class="flex justify-between items-start flex-wrap gap-2">
+                                <span class="text-xs font-black bg-amber-500/20 text-amber-300 border border-amber-500/30 px-3 py-1 rounded-full">08:30 - 13:00 น.</span>
+                                <span class="text-xs font-bold text-slate-400"><i class="fa-solid fa-ship text-amber-400"></i> Metro Line 17 สถานี Zhujiajiao Exit 1</span>
+                            </div>
+                            <h3 class="font-bold text-xl text-white mt-2">เมืองโบราณริมน้ำจูเจียเจี่ยว (Zhujiajiao Water Town / 朱家角古镇)</h3>
+                            <p class="text-slate-300 text-sm mt-2 leading-relaxed">
+                                สัมผัสบรรยากาศเมืองริมน้ำอายุกว่า 1,700 ปี ถ่ายรูปบน **สะพานหินฟ่างเชิง (Fangsheng Bridge)** นั่งเรือแจวไม้โบราณชมลำคลอง และชิมบ๊ะจ่างจูเจียเจี่ยวสูตรดั้งเดิม
+                            </p>
+                            <div class="mt-3 bg-slate-900/90 p-3.5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-1.5">
+                                <p class="text-amber-400 font-bold"><i class="fa-solid fa-route mr-1"></i> วิธีเดินทางจากโรงแรม (ประมาณ 1.5 ชม.):</p>
+                                <p>• **Line 3** Baoyang Road ➔ ลง Hongqiao Railway Station ➔ เปลี่ยนเป็น **Line 17** ➔ ลงสถานี **Zhujiajiao Exit 1** เดินต่อ 10 นาทีเข้าสู่เมืองโบราณ</p>
+                            </div>
+                            <!-- Map Buttons -->
+                            <div class="mt-4 flex flex-wrap gap-2 pt-2 border-t border-slate-800/80">
+                                <a href="https://www.google.com/maps/search/?api=1&query=Zhujiajiao+Ancient+Town" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-800/90 hover:bg-amber-900/50 text-slate-200 border border-slate-700 hover:border-amber-500/50 transition">
+                                    <i class="fa-solid fa-map-pin text-rose-400"></i> Google Maps (จูเจียเจี่ยว)
+                                </a>
+                                <a href="https://uri.amap.com/search?keyword=朱家角古镇" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-800/90 hover:bg-amber-900/50 text-slate-200 border border-slate-700 hover:border-amber-500/50 transition">
+                                    <i class="fa-solid fa-location-arrow text-sky-400"></i> Amap (朱家角古镇)
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Spot 2 -->
+                    <div class="relative z-10 flex gap-4 sm:gap-6">
+                        <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-amber-500 to-rose-600 text-white flex items-center justify-center text-lg font-bold flex-shrink-0 shadow-lg shadow-amber-500/30">
+                            2
+                        </div>
+                        <div class="glass-card rounded-2xl p-5 flex-grow border border-slate-800 hover:border-amber-500/40 transition">
+                            <div class="flex justify-between items-start flex-wrap gap-2">
+                                <span class="text-xs font-black bg-amber-500/20 text-amber-300 border border-amber-500/30 px-3 py-1 rounded-full">14:30 - 17:30 น.</span>
+                                <span class="text-xs font-bold text-slate-400"><i class="fa-solid fa-tree text-amber-400"></i> Metro Line 10/14 สถานี Yuyuan Garden Exit 1</span>
+                            </div>
+                            <h3 class="font-bold text-xl text-white mt-2">สวนอี้หยวน (Yuyuan Garden) & ตลาดเฉินหวังเมี่ยว (City God Temple)</h3>
+                            <p class="text-slate-300 text-sm mt-2 leading-relaxed">
+                                ชมสวนเก๋งจีนโบราณยุคราชวงศ์หมิง จากนั้นเดินถ่ายรูปเกาะสะพานเก้าโค้ง ชมการเปิดไฟสถาปัตยกรรมจีนโบราณสีทองอร่ามยามเย็น และชิม **เสี่ยวหลงเปายักษ์ใช้หลอดดูด (Guan Tang Bao)**
+                            </p>
+                            <!-- Map Buttons -->
+                            <div class="mt-4 flex flex-wrap gap-2 pt-2 border-t border-slate-800/80">
+                                <a href="https://www.google.com/maps/search/?api=1&query=Yuyuan+Garden+Shanghai" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-800/90 hover:bg-amber-900/50 text-slate-200 border border-slate-700 hover:border-amber-500/50 transition">
+                                    <i class="fa-solid fa-map-pin text-rose-400"></i> Google Maps (สวนอี้หยวน)
+                                </a>
+                                <a href="https://uri.amap.com/search?keyword=豫园" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-800/90 hover:bg-amber-900/50 text-slate-200 border border-slate-700 hover:border-amber-500/50 transition">
+                                    <i class="fa-solid fa-location-arrow text-sky-400"></i> Amap (豫园)
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Spot 3 -->
+                    <div class="relative z-10 flex gap-4 sm:gap-6">
+                        <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-amber-500 to-rose-600 text-white flex items-center justify-center text-lg font-bold flex-shrink-0 shadow-lg shadow-amber-500/30">
+                            3
+                        </div>
+                        <div class="glass-card rounded-2xl p-5 flex-grow border border-slate-800 hover:border-amber-500/40 transition">
+                            <div class="flex justify-between items-start flex-wrap gap-2">
+                                <span class="text-xs font-black bg-amber-500/20 text-amber-300 border border-amber-500/30 px-3 py-1 rounded-full">18:00 - 21:00 น.</span>
+                                <span class="text-xs font-bold text-slate-400"><i class="fa-solid fa-mug-hot text-amber-400"></i> Metro Line 10 สถานี Xintiandi Exit 6</span>
+                            </div>
+                            <h3 class="font-bold text-xl text-white mt-2">ย่านซินเทียนตี้ (Xintiandi / 新天地) ยามค่ำคืน</h3>
+                            <p class="text-slate-300 text-sm mt-2 leading-relaxed">
+                                นั่ง Metro Line 10 จาก Yuyuan Garden เพียง 2 สถานี มาดื่มด่ำบรรยากาศย่านบาร์ คาเฟ่ และร้านอาหารหรูหรา ตกแต่งอาคารอิฐเก่าสือคู่เหมินสุดโรแมนติก
+                            </p>
+                            <!-- Map Buttons -->
+                            <div class="mt-4 flex flex-wrap gap-2 pt-2 border-t border-slate-800/80">
+                                <a href="https://www.google.com/maps/search/?api=1&query=Xintiandi+Shanghai" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-800/90 hover:bg-amber-900/50 text-slate-200 border border-slate-700 hover:border-amber-500/50 transition">
+                                    <i class="fa-solid fa-map-pin text-rose-400"></i> Google Maps (ซินเทียนตี้)
+                                </a>
+                                <a href="https://uri.amap.com/search?keyword=新天地" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-800/90 hover:bg-amber-900/50 text-slate-200 border border-slate-700 hover:border-amber-500/50 transition">
+                                    <i class="fa-solid fa-location-arrow text-sky-400"></i> Amap (新天地)
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== DAY 4: TUE 24 NOV 2026 ==================== -->
+        <div id="day4" class="day-content">
+            <div class="glass-panel rounded-3xl p-6 sm:p-8 shadow-2xl border border-purple-500/20">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-purple-900/30 pb-5 mb-8 gap-3">
+                    <div>
+                        <span class="text-xs font-black text-purple-400 uppercase tracking-widest flex items-center gap-1.5">
+                            <i class="fa-solid fa-calendar-day"></i> DAY 4 • อังคารที่ 24 พฤศจิกายน 2569
+                        </span>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-1">วัดหลงหัว, คาเฟ่อู่คัง, อาคารพันต้นไม้, ลู่เจียจุ่ย ➔ สนามบิน</h2>
+                    </div>
+                    <span class="bg-purple-500/20 text-purple-300 border border-purple-500/40 px-3.5 py-1.5 rounded-full text-xs font-bold shadow-sm">
+                        🛕 วัดโบราณสามก๊ก, คาเฟ่ฮิปสเตอร์, ตึกระฟ้า & บินกลับ
+                    </span>
+                </div>
+
+                <div class="relative timeline-line space-y-8 pl-2">
+                    
+                    <!-- Spot 1: NEW LONGHUA TEMPLE -->
+                    <div class="relative z-10 flex gap-4 sm:gap-6">
+                        <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-amber-500 to-purple-600 text-white flex items-center justify-center text-lg font-bold flex-shrink-0 shadow-lg shadow-purple-600/30">
+                            1
+                        </div>
+                        <div class="glass-card rounded-2xl p-5 flex-grow border border-slate-800 hover:border-amber-500/40 transition">
+                            <div class="flex justify-between items-start flex-wrap gap-2">
+                                <span class="text-xs font-black bg-amber-500/20 text-amber-300 border border-amber-500/30 px-3 py-1 rounded-full">08:30 - 10:30 น.</span>
+                                <span class="text-xs font-bold text-slate-400"><i class="fa-solid fa-gopuram text-amber-400"></i> Metro Line 11/12 สถานี Longhua (龙华站) Exit 2</span>
+                            </div>
+                            <div class="flex items-center gap-2 mt-2">
+                                <span class="bg-amber-500/20 text-amber-300 border border-amber-500/40 text-[11px] font-bold px-2.5 py-0.5 rounded-full">⭐ แนะนำพิเศษ</span>
+                                <h3 class="font-bold text-xl text-white">วัดหลงหัว (Longhua Temple / 龙华寺) & เจดีย์หลงหัว</h3>
+                            </div>
+                            <p class="text-slate-300 text-sm mt-2 leading-relaxed">
+                                สัมผัสความมนต์ขลังของวัดพุทธที่เก่าแก่ที่สุดในเซี่ยงไฮ้ (สร้างยุคสามก๊ก ค.ศ. 242 อายุกว่า 1,700 ปี) ขอพรการงาน โชคลาภ ถ่ายรูปกับ **เจดีย์หลงหัว 7 ชั้น (Longhua Pagoda)** และห้ามพลาดชิม **บะหมี่เจวัดหลงหัว (Longhua Vegetarian Noodle)** รสเด็ดขึ้นชื่อประจำวัด
+                            </p>
+                            <div class="mt-3 bg-slate-900/90 p-3.5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-1">
+                                <p class="text-amber-400 font-bold"><i class="fa-solid fa-route mr-1"></i> วิธีเดินทางจากโรงแรม:</p>
+                                <p>• **Line 3** Baoyang Road ➔ ลงสถานี Caojiadu / Yishan Road ➔ เปลี่ยนเป็น **Line 11** ลงสถานี **Longhua Exit 2** (เดินเข้าวัด 3 นาที)</p>
+                            </div>
+                            <!-- Map Buttons -->
+                            <div class="mt-4 flex flex-wrap gap-2 pt-2 border-t border-slate-800/80">
+                                <a href="https://www.google.com/maps/search/?api=1&query=Longhua+Temple+Shanghai" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-800/90 hover:bg-purple-900/50 text-slate-200 border border-slate-700 hover:border-purple-500/50 transition">
+                                    <i class="fa-solid fa-map-pin text-rose-400"></i> Google Maps (วัดหลงหัว)
+                                </a>
+                                <a href="https://uri.amap.com/search?keyword=龙华寺" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-800/90 hover:bg-purple-900/50 text-slate-200 border border-slate-700 hover:border-purple-500/50 transition">
+                                    <i class="fa-solid fa-location-arrow text-sky-400"></i> Amap (龙华寺)
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Spot 2 -->
+                    <div class="relative z-10 flex gap-4 sm:gap-6">
+                        <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-purple-600 to-indigo-600 text-white flex items-center justify-center text-lg font-bold flex-shrink-0 shadow-lg shadow-purple-600/30">
+                            2
+                        </div>
+                        <div class="glass-card rounded-2xl p-5 flex-grow border border-slate-800 hover:border-purple-500/40 transition">
+                            <div class="flex justify-between items-start flex-wrap gap-2">
+                                <span class="text-xs font-black bg-purple-500/20 text-purple-300 border border-purple-500/30 px-3 py-1 rounded-full">11:00 - 13:30 น.</span>
+                                <span class="text-xs font-bold text-slate-400"><i class="fa-solid fa-building text-purple-400"></i> Metro Line 11 จาก Longhua เพียง 3 สถานี ➔ Jiao Tong Univ Exit 7</span>
+                            </div>
+                            <h3 class="font-bold text-xl text-white mt-2">ตึกเรือเตารีดอู่คัง (Wukang Mansion) & ถนนสายคาเฟ่อานฟู (Anfu Road)</h3>
+                            <p class="text-slate-300 text-sm mt-2 leading-relaxed">
+                                นั่ง Line 11 ตรงมาจากวัดหลงหัวเพียง 8 นาที! ถ่ายรูปมุมมหาชน **ตึก Wukang Mansion** ทรงเตารีดสไตล์คลาสสิกปี 1924 จิบกาแฟ Manner Coffee หรือ % Arabica เดินเล่นย่านแฟชั่นชิคๆ บนถนนอานฟู
+                            </p>
+                            <!-- Map Buttons -->
+                            <div class="mt-4 flex flex-wrap gap-2 pt-2 border-t border-slate-800/80">
+                                <a href="https://www.google.com/maps/search/?api=1&query=Wukang+Building+Shanghai" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-800/90 hover:bg-purple-900/50 text-slate-200 border border-slate-700 hover:border-purple-500/50 transition">
+                                    <i class="fa-solid fa-map-pin text-rose-400"></i> Google Maps (ตึกอู่คัง)
+                                </a>
+                                <a href="https://uri.amap.com/search?keyword=武康大楼" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-800/90 hover:bg-purple-900/50 text-slate-200 border border-slate-700 hover:border-purple-500/50 transition">
+                                    <i class="fa-solid fa-location-arrow text-sky-400"></i> Amap (武康大楼)
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Spot 3 -->
+                    <div class="relative z-10 flex gap-4 sm:gap-6">
+                        <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-purple-600 to-indigo-600 text-white flex items-center justify-center text-lg font-bold flex-shrink-0 shadow-lg shadow-purple-600/30">
+                            3
+                        </div>
+                        <div class="glass-card rounded-2xl p-5 flex-grow border border-slate-800 hover:border-purple-500/40 transition">
+                            <div class="flex justify-between items-start flex-wrap gap-2">
+                                <span class="text-xs font-black bg-purple-500/20 text-purple-300 border border-purple-500/30 px-3 py-1 rounded-full">14:00 - 16:30 น.</span>
+                                <span class="text-xs font-bold text-slate-400"><i class="fa-solid fa-building-wheat text-purple-400"></i> Metro Line 13 สถานี Jiangning Road Exit 1</span>
+                            </div>
+                            <h3 class="font-bold text-xl text-white mt-2">อาคารพันต้นไม้ (Tian An 1,000 Trees) & ย่านศิลปะ M50</h3>
+                            <p class="text-slate-300 text-sm mt-2 leading-relaxed">
+                                ชมสิ่งมหัศจรรย์สถาปัตยกรรม "สวนลอยแห่งเซี่ยงไฮ้" ปลูกต้นไม้บนเสาอาคารกว่า 1,000 ต้น ริมแม่น้ำซูโจว จากนั้นเดินต่อ 5 นาทีชมกราฟฟิตี้และแกลเลอรีศิลปะย่าน **M50 Creative Park**
+                            </p>
+                            <!-- Map Buttons -->
+                            <div class="mt-4 flex flex-wrap gap-2 pt-2 border-t border-slate-800/80">
+                                <a href="https://www.google.com/maps/search/?api=1&query=Tian+An+1000+Trees+Shanghai" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-800/90 hover:bg-purple-900/50 text-slate-200 border border-slate-700 hover:border-purple-500/50 transition">
+                                    <i class="fa-solid fa-map-pin text-rose-400"></i> Google Maps (อาคารพันต้นไม้)
+                                </a>
+                                <a href="https://uri.amap.com/search?keyword=天安千树" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-800/90 hover:bg-purple-900/50 text-slate-200 border border-slate-700 hover:border-purple-500/50 transition">
+                                    <i class="fa-solid fa-location-arrow text-sky-400"></i> Amap (天安千树)
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Spot 4 -->
+                    <div class="relative z-10 flex gap-4 sm:gap-6">
+                        <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-purple-600 to-indigo-600 text-white flex items-center justify-center text-lg font-bold flex-shrink-0 shadow-lg shadow-purple-600/30">
+                            4
+                        </div>
+                        <div class="glass-card rounded-2xl p-5 flex-grow border border-slate-800 hover:border-purple-500/40 transition">
+                            <div class="flex justify-between items-start flex-wrap gap-2">
+                                <span class="text-xs font-black bg-purple-500/20 text-purple-300 border border-purple-500/30 px-3 py-1 rounded-full">17:00 - 19:30 น.</span>
+                                <span class="text-xs font-bold text-slate-400"><i class="fa-solid fa-city text-purple-400"></i> Metro Line 2 สถานี Lujiazui Exit 1/2</span>
+                            </div>
+                            <h3 class="font-bold text-xl text-white mt-2">ศูนย์การเงินลู่เจียจุ่ย (Lujiazui) & สะพานวงกลม Lujiazui</h3>
+                            <p class="text-slate-300 text-sm mt-2 leading-relaxed">
+                                ยืนบนสะพานลอยวงกลมถ่ายภาพมุมเสย 3 ตึกระฟ้าที่สูงที่สุดในจีน (Shanghai Tower, World Financial Center, Jin Mao Tower) และชมหอไข่มุกเปิดไฟตระการตา
+                            </p>
+                            <!-- Map Buttons -->
+                            <div class="mt-4 flex flex-wrap gap-2 pt-2 border-t border-slate-800/80">
+                                <a href="https://www.google.com/maps/search/?api=1&query=Lujiazui+Shanghai" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-800/90 hover:bg-purple-900/50 text-slate-200 border border-slate-700 hover:border-purple-500/50 transition">
+                                    <i class="fa-solid fa-map-pin text-rose-400"></i> Google Maps (ลู่เจียจุ่ย)
+                                </a>
+                                <a href="https://uri.amap.com/search?keyword=陆家嘴" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-800/90 hover:bg-purple-900/50 text-slate-200 border border-slate-700 hover:border-purple-500/50 transition">
+                                    <i class="fa-solid fa-location-arrow text-sky-400"></i> Amap (陆家嘴)
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Spot 5 -->
+                    <div class="relative z-10 flex gap-4 sm:gap-6">
+                        <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-purple-600 to-indigo-600 text-white flex items-center justify-center text-lg font-bold flex-shrink-0 shadow-lg shadow-purple-600/30">
+                            5
+                        </div>
+                        <div class="glass-card rounded-2xl p-5 flex-grow border border-slate-800 hover:border-purple-500/40 transition">
+                            <div class="flex justify-between items-start flex-wrap gap-2">
+                                <span class="text-xs font-black bg-purple-500/20 text-purple-300 border border-purple-500/30 px-3 py-1 rounded-full">20:00 - 22:30 น.</span>
+                                <span class="text-xs font-bold text-slate-400"><i class="fa-solid fa-plane-departure text-purple-400"></i> รับกระเป๋าที่โรงแรม ➔ สนามบินผู่ตง (PVG)</span>
+                            </div>
+                            <h3 class="font-bold text-xl text-white mt-2">รับสัมภาระที่โรงแรม & เดินทางสู่สนามบินผู่ตง (PVG)</h3>
+                            <p class="text-slate-300 text-sm mt-2 leading-relaxed">
+                                กลับโรงแรมรับสัมภาระ เรียกรถ DiDi มุ่งหน้าสู่สนามบินผู่ตง (PVG) ให้ถึงสนามบินก่อนเวลา 22:30 น. เพื่อเช็คอินเที่ยวบินขากลับ
+                            </p>
+                            <!-- Map Buttons -->
+                            <div class="mt-4 flex flex-wrap gap-2 pt-2 border-t border-slate-800/80">
+                                <a href="https://www.google.com/maps/search/?api=1&query=Shanghai+Pudong+International+Airport" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-800/90 hover:bg-purple-900/50 text-slate-200 border border-slate-700 hover:border-purple-500/50 transition">
+                                    <i class="fa-solid fa-map-pin text-rose-400"></i> Google Maps (สนามบินผู่ตง)
+                                </a>
+                                <a href="https://uri.amap.com/search?keyword=上海浦东国际机场" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-800/90 hover:bg-purple-900/50 text-slate-200 border border-slate-700 hover:border-purple-500/50 transition">
+                                    <i class="fa-solid fa-location-arrow text-sky-400"></i> Amap (浦东机场)
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== DAY 5: WED 25 NOV 2026 ==================== -->
+        <div id="day5" class="day-content">
+            <div class="glass-panel rounded-3xl p-6 sm:p-8 shadow-2xl border border-emerald-500/20">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-emerald-900/30 pb-5 mb-8 gap-3">
+                    <div>
+                        <span class="text-xs font-black text-emerald-400 uppercase tracking-widest flex items-center gap-1.5">
+                            <i class="fa-solid fa-calendar-day"></i> DAY 5 • พุธที่ 25 พฤศจิกายน 2569
+                        </span>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-1">เดินทางถึงกรุงเทพฯ (DMK) โดยสวัสดิภาพ</h2>
+                    </div>
+                    <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-3.5 py-1.5 rounded-full text-xs font-bold shadow-sm">
+                        🛬 บินถึงไทยเช้าตรู่
+                    </span>
+                </div>
+
+                <div class="relative timeline-line space-y-8 pl-2">
+                    
+                    <!-- Spot 1 -->
+                    <div class="relative z-10 flex gap-4 sm:gap-6">
+                        <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-emerald-600 to-teal-600 text-white flex items-center justify-center text-lg font-bold flex-shrink-0 shadow-lg shadow-emerald-600/30">
+                            1
+                        </div>
+                        <div class="glass-card rounded-2xl p-5 flex-grow border border-slate-800 hover:border-emerald-500/40 transition">
+                            <div class="flex justify-between items-start flex-wrap gap-2">
+                                <span class="text-xs font-black bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-3 py-1 rounded-full">02:40 - 06:10 น.</span>
+                                <span class="text-xs font-bold text-slate-400"><i class="fa-solid fa-plane-landing text-emerald-400"></i> PVG ➔ DMK</span>
+                            </div>
+                            <h3 class="font-bold text-xl text-white mt-2">เที่ยวบินขากลับ PVG ➔ DMK (02:40 น. - 06:10 น.)</h3>
+                            <p class="text-slate-300 text-sm mt-2 leading-relaxed">
+                                เหินฟ้าออกจากสนามบินผู่ตง (PVG) เวลา **02:40 น.** (คืนวันอังคารรอยต่อเช้ามืดวันพุธ) ใช้เวลาเดินทางประมาณ 4 ชั่วโมง 30 นาที
+                            </p>
+                            <div class="mt-3 bg-slate-900/90 p-3.5 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-1">
+                                <p class="text-emerald-400 font-bold"><i class="fa-solid fa-house-flag mr-1"></i> เดินทางถึงประเทศไทย:</p>
+                                <p>• เดินทางถึงสนามบินดอนเมือง (DMK) เวลา **06:10 น.** เช้าตรู่วันพุธที่ 25 พ.ย. 2569 โดยสวัสดิภาพและความประทับใจ!</p>
+                            </div>
+                            <!-- Map Buttons -->
+                            <div class="mt-4 flex flex-wrap gap-2 pt-2 border-t border-slate-800/80">
+                                <a href="https://www.google.com/maps/search/?api=1&query=Don+Mueang+International+Airport" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-800/90 hover:bg-emerald-900/50 text-slate-200 border border-slate-700 hover:border-emerald-500/50 transition">
+                                    <i class="fa-solid fa-map-pin text-rose-400"></i> Google Maps (ดอนเมือง)
+                                </a>
+                                <a href="https://uri.amap.com/search?keyword=Don+Mueang+International+Airport" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-800/90 hover:bg-emerald-900/50 text-slate-200 border border-slate-700 hover:border-emerald-500/50 transition">
+                                    <i class="fa-solid fa-location-arrow text-sky-400"></i> Amap (Don Mueang)
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== HOTEL & METRO ==================== -->
+        <div id="hotel" class="day-content">
+            <div class="glass-panel rounded-3xl p-6 sm:p-8 shadow-2xl border border-sky-500/20">
+                <h2 class="text-2xl font-black text-white mb-6 flex items-center gap-2 border-b border-slate-800 pb-4">
+                    <i class="fa-solid fa-hotel text-sky-400"></i> ข้อมูลที่พัก & คำแนะนำการเดินทาง Metro
+                </h2>
+
+                <div class="glass-card p-6 rounded-2xl border border-slate-800 space-y-5">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+                        <div>
+                            <span class="text-xs font-bold text-sky-400 uppercase tracking-widest">โรงแรมที่พักตลอดทริป</span>
+                            <h3 class="text-xl font-bold text-white mt-1">Holiday Inn Express Shanghai Baoyang (上海宝杨智选假日酒店)</h3>
+                            <p class="text-sm text-slate-300 mt-1">
+                                <i class="fa-solid fa-location-dot text-rose-400 mr-1"></i> No.669, 1 Tongji Rd, Baoshan, Shanghai, China 200940
+                            </p>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <a href="https://maps.app.goo.gl/tScCHYb5cqsVfuKW9" target="_blank" class="bg-rose-700 hover:bg-rose-600 text-white text-xs font-bold px-3.5 py-2 rounded-xl border border-rose-500/30 flex items-center gap-1.5 shadow-md">
+                                <i class="fa-solid fa-map-pin text-amber-300"></i> Google Maps
+                            </a>
+                            <a href="https://uri.amap.com/search?keyword=上海宝杨智选假日酒店" target="_blank" class="bg-sky-700 hover:bg-sky-600 text-white text-xs font-bold px-3.5 py-2 rounded-xl border border-sky-500/30 flex items-center gap-1.5 shadow-md">
+                                <i class="fa-solid fa-location-arrow text-sky-200"></i> Amap (高德)
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="p-4 bg-slate-900/90 rounded-xl border border-slate-800 space-y-3 text-xs sm:text-sm text-slate-300">
+                        <p class="font-bold text-amber-400 text-base"><i class="fa-solid fa-train-subway mr-1.5"></i> การเดินทางด้วยรถไฟใต้ดิน (Metro Line 3):</p>
+                        <p>1. **สถานีรถไฟใต้ดินใกล้ที่สุด:** สถานี **Baoyang Road Station (宝杨路站)** - Metro Line 3 (เดินจากโรงแรมประมาณ 600-800 เมตร 8-10 นาที หรือนั่ง DiDi 2 นาที)</p>
+                        <p>2. **การเดินทางเข้าเมือง:** นั่ง Line 3 จาก Baoyang Road ➔ ลงสถานี Shanghai Railway Station ➔ เปลี่ยนเป็น Line 1 หรือ Line 2 เพื่อเข้าสู่ People's Square / East Nanjing Road</p>
+                        <p>3. **เวลาวิ่งรถไฟใต้ดิน:** โดยทั่วไปเปิดให้บริการประมาณ 05:30 - 22:30 น. (วางแผนเดินทางกลับช่วงกลางคืนไม่เกิน 22:00 น.)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== APPS GUIDE ==================== -->
+        <div id="apps" class="day-content">
+            <div class="glass-panel rounded-3xl p-6 sm:p-8 shadow-2xl border border-rose-500/20">
+                <h2 class="text-2xl font-black text-white mb-6 flex items-center gap-2 border-b border-slate-800 pb-4">
+                    <i class="fa-solid fa-mobile-screen-button text-rose-500"></i> แอปพลิเคชันสำคัญสำหรับเที่ยวเซี่ยงไฮ้
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="glass-card p-5 rounded-2xl border border-slate-800 flex gap-4 items-start">
+                        <div class="w-12 h-12 rounded-2xl bg-rose-500/20 text-rose-400 flex items-center justify-center text-2xl font-bold flex-shrink-0">
+                            <i class="fa-solid fa-wallet"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-white">Alipay (สแกนจ่าย + สแกน Metro)</h3>
+                            <p class="text-xs text-slate-300 mt-1 leading-relaxed">
+                                ผูกบัตร Credit/Debit หรือ YouTrip ใช้สแกนจ่ายเงินได้ทุกร้าน และใช้เมนู **Transport** เปิด QR Code สแกนผ่านประตู Metro ได้ทันทีโดยไม่ต้องซื้อตั๋ว
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-5 rounded-2xl border border-slate-800 flex gap-4 items-start">
+                        <div class="w-12 h-12 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-2xl font-bold flex-shrink-0">
+                            <i class="fa-solid fa-map-location-dot"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-white">Amap (高德地图 / Gaode Maps)</h3>
+                            <p class="text-xs text-slate-300 mt-1 leading-relaxed">
+                                แอปแผนที่ที่แม่นยำที่สุดในจีน พิมพ์ค้นหาภาษาอังกฤษได้ บอกทางรถไฟใต้ดิน และคำนวณเวลาเดินทางแม่นยำเป๊ะ
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-5 rounded-2xl border border-slate-800 flex gap-4 items-start">
+                        <div class="w-12 h-12 rounded-2xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-2xl font-bold flex-shrink-0">
+                            <i class="fa-solid fa-subway"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-white">MetroMan Shanghai</h3>
+                            <p class="text-xs text-slate-300 mt-1 leading-relaxed">
+                                แอปผังรถไฟใต้ดินภาษาอังกฤษ คำนวณเส้นทาง เปลี่ยนสถานี จุดทางออก และเวลาเดินทางใช้งานได้ Offline
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-5 rounded-2xl border border-slate-800 flex gap-4 items-start">
+                        <div class="w-12 h-12 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-2xl font-bold flex-shrink-0">
+                            <i class="fa-solid fa-taxi"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-white">DiDi Ride (ใน Alipay)</h3>
+                            <p class="text-xs text-slate-300 mt-1 leading-relaxed">
+                                เรียกรถแท็กซี่ผ่านมินิแอปใน Alipay ไม่ต้องโหลดแอปแยก คำนวณราคาล่วงหน้า ปักหมุดภาษาอังกฤษสะดวกมาก
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+</body>
+</html>
